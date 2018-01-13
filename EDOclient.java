@@ -7,8 +7,9 @@ This is an FTPClient app that will utilise Apache Commons Net libraries for conv
 https://commons.apache.org/proper/commons-net/
 
 They are installed in a series of subfolders inside a 'java' folder.
+(alternatively copy the 40MB of org.apache etc subfolders into same folder as this and other app files)
 
-Place this file in the main 'java' folder supplied by the Commons Net java packages.
+If classpath is not set otherwise, place this file in the main 'java' folder supplied by the Commons Net java packages.
 
 The primary purpose of this client is to retrieve files from a directory structure on an FTP server.
 */
@@ -16,6 +17,7 @@ The primary purpose of this client is to retrieve files from a directory structu
 import org.apache.commons.net.ftp.*;
 import java.io.IOException;
 import java.util.*; //arraylist
+
 
 public class EDOclient {
 
@@ -26,11 +28,17 @@ LinkedList<String> dirqueue = new LinkedList<String>();
 String currentdir = "";
 int globalFiles=0;
 long globalSize=0;
-EDOfileApp fileWrite = new EDOfileApp("permits.txt");
+//default
+EDOfileApp fileWrite;
 
-//constructor
+//basic constructor with default file
 public EDOclient() {
+   fileWrite = new EDOfileApp("permits.txt");
+}
 
+//constructor with filename for output supplied
+public EDOclient(String myOutput) {
+    fileWrite = new EDOfileApp(myOutput);
 }
 
 

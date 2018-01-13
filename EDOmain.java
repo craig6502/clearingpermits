@@ -30,9 +30,43 @@ public EDOmain() {
 
 }
 
+/* main
+Usage: javac EDOmain.java
+java main filename
+(the filename should have an extension e.g. .txt and is used to save list from server to file)
+*/
+
 
 public static void main(String[] args) {
-        EDOclient myFTP = new EDOclient();    
+		String myListFile = "Permits.txt"; //default
+		if (args.length>0){
+			myListFile=args[0];
+		}
+        EDOclient myFTP = new EDOclient(myListFile);    
         myFTP.start();
     }
+    /* 
+
+    if (args.length==1) {
+            //System.out.println("length:"+args.length+","+args[args.length-1]);
+            folderCode=args[0];
+        }
+
+        if (args.length==2) {
+            //System.out.println("length:"+args.length+","+args[args.length-1]);
+            folderCode=args[0];
+            toggleCode=args[1];
+        }
+        //System.exit(0);
+
+        //TO DO: outputfile option "-o" and next argument is filename or o= and startsWith
+
+        switch (folderCode) {
+            case "help":  help(); 
+            break;
+            default:
+            }
+
+        }
+        */
 }
