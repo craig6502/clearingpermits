@@ -1,8 +1,3 @@
-//Only use package reference if running from outside the folder
-//package s19007617;
-
-//import cits3001_2016s2.*;
-
 import java.util.*;
 import java.io.*;
 import java.io.File;
@@ -49,9 +44,6 @@ public class EDOfileApp{
          FileWriter fws;
            try {
                fws = new FileWriter(new File(this.filename),false); //boolean append false = Overwrite file.
-               //BufferedWriter bw = new BufferedWriter(fws);
-               //or maybe a PrintWriter.   What IO or functions do these add to the FileWriter class?
-               //Some of the differences to check are IO reporting, printing and buffering differences
   	            for (int y=0; y<count; y++) {
                 fws.write(header[y]);
                 if (y<(count-1)) {
@@ -91,7 +83,6 @@ public class EDOfileApp{
        FileWriter fws;
          try {
              fws = new FileWriter(new File(this.filename),true); //boolean append
-             //BufferedWriter bw = new BufferedWriter(fws);
               for (int y=0; y<count; y++) {
                fws.write(values[y]);
                if (y<(count-1)) {
@@ -118,8 +109,6 @@ public class EDOfileApp{
       Boolean error = false;
       try {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(this.filename));
-      // TO DO: check if above line is ok or if it needs to work with file input stream
-
       // use the readLine method of the BufferedReader to read one line at a time.
       while ((line = bufferedReader.readLine())!=null) {
         if (line==null) {
@@ -227,9 +216,7 @@ public class EDOfileApp{
       Boolean error = false;
       try {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(this.filename));
-      // TO DO: check if above line is ok or if it needs to work with file input stream
-
-      // use the readLine method of the BufferedReader to read one line at a time.
+           // use the readLine method of the BufferedReader to read one line at a time.
       while ((line = bufferedReader.readLine())!=null) {
         if (line==null) {
           System.out.println("caught a null");
@@ -243,7 +230,6 @@ public class EDOfileApp{
         int groupCount = matcher.groupCount();
         while (matcher.find())
           {
-          //System.out.println(matcher.group(1)+" group 2:"+matcher.group(2)+" group 3:"+matcher.group(3));
             for (int i = 1; i <= groupCount; i++) {
                 // Group i substring
                 System.out.println("Group " + i + ": " + matcher.group(i));
@@ -256,13 +242,6 @@ public class EDOfileApp{
         output[4]=matcher.group(6); //size
         output[5]=matcher.group(3); //this is the permit application number
         myOutput.addDelimRecord(6,output,"#"); //with delimiter - always output
-        /*Boolean isIncluded = false;
-        isIncluded=checkDecision(output[4]);
-          if (isIncluded==true) {
-            myOutput.addDelimRecord(6,output,"#"); //with delimiter
-            break;
-          }
-          */
       }
       }
       //myOutput.close();
@@ -343,31 +322,7 @@ public class EDOfileApp{
           }
         return false;
       }
-
-     //read from CSV/text file 'filename', each row having 'count' records
-     //the field structure is stored in a pre-defined class; referred to generically here as 'Object'
-     /**
-     public String[] readFile(int count, String filename) {
-
-       FileReader frd;
-       String[] values = new String[count];
-         try {
-             frd = new FileReader(new File(filename)); //boolean append
-             for (int y=0; y<count; y++) {
-              frd.read(values[y]);
-              if (y<(count-1)) {
-                frd.read(",");
-              }
-             }
-             frd.flush();
-             frd.close();
-             System.out.println("Done");
-           } catch (IOException ex) { //this will occur for IO error or end of file
-               ex.printStackTrace();
-           }
-           return values;
-     }
-     */
+	
        public static void main(String args[]){
 
        /**
